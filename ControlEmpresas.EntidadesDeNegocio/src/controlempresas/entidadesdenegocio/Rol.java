@@ -8,7 +8,7 @@ public class Rol {
     private int nombre;
     private int top_aux;
     private ArrayList<Usuario> usuario;
-
+    
     public Rol() {
     }
 
