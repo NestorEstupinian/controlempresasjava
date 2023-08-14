@@ -5,16 +5,16 @@ import java.util.ArrayList;
 
 public class Rol {
     private int id;
-    private int nombre;
+    private String Nombre;
     private int top_aux;
     private ArrayList<Usuario> usuario;
-    
+
     public Rol() {
     }
 
-    public Rol(int id, int nombre, int top_aux, ArrayList<Usuario> usuario) {
+    public Rol(int id, String Nombre, int top_aux, ArrayList<Usuario> usuario) {
         this.id = id;
-        this.nombre = nombre;
+        this.Nombre = Nombre;
         this.top_aux = top_aux;
         this.usuario = usuario;
     }
@@ -27,12 +27,12 @@ public class Rol {
         this.id = id;
     }
 
-    public int getNombre() {
-        return nombre;
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setNombre(int nombre) {
-        this.nombre = nombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     public int getTop_aux() {
@@ -51,5 +51,5 @@ public class Rol {
         this.usuario = usuario;
     }
     
-    
+  
 }
