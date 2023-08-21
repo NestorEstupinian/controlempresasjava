@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class Utilidad {
+    //el request es la peticion que viaja del cliente al servidor
     public static String getParameter(HttpServletRequest request, String pKey, String pDefault) {
         String result = "";
         String value = request.getParameter(pKey);
