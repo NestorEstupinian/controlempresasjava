@@ -3,49 +3,59 @@ package controlempresas.accesoadatos;
 import java.sql.*;
 
 public class ComunDB {
+    
+    //enumerar las opciones de bd
     class TipoDB { 
         static final int SQLSERVER = 1; 
         static final int MYSQL = 2; 
     }
     
+    //se especifica con que bd se trabajara
     static int TIPODB = TipoDB.SQLSERVER;
     
-    static String connectionUrlSqlServer = "jdbc:sqlserver://localhost;"
+    //cadena de conexion
+    static String connectionUrlSqlServer = "jdbc:sqlserver://localhost;" //servidor
             + "database=CatalogoEmpresasDB;"
             + "user=JavaUser;"
             + "password=#Modulo16;"
-            + "loginTimeout=30;encrypt=false;trustServerCertificate=false";
+            + "loginTimeout=30;encrypt=false;trustServerCertificate=false"; //si no se establece la conexion en 30 segundos, muestra la excepcion -- encriptacion
     
+    //metodo para conectar a la base de datos
     public static Connection obtenerConexion() throws SQLException {
+        //que tipo de base de datos se utilizara y registrar el driver
         if(TIPODB == 1){
             DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
             Connection connection = DriverManager.getConnection(connectionUrlSqlServer);
             return connection;
         }
-        
+        //si no se puede establecer la conexion nulo
         return null;
     }
     
+   
+  //clases por si se trabaja con consultas
     public static Statement createStatement(Connection pConn) throws SQLException {
         Statement statement = pConn.createStatement();
         return statement;
     }
-    
+   
+ // maneja la consulta
     public static PreparedStatement createPreparedStatement(Connection pConn, String pSql) throws SQLException {
         PreparedStatement statement = pConn.prepareStatement(pSql);
         return statement;
     }
-    
+    //
     public static ResultSet obtenerResultSet(Statement pStatement, String pSql) throws SQLException {
         ResultSet resultSet = pStatement.executeQuery(pSql);
         return resultSet;
     }
-
+//obtiene una especie de tabla que tiene columnas y filas
     public static ResultSet obtenerResultSet(PreparedStatement pPreparedStatement) throws SQLException {
         ResultSet resultSet = pPreparedStatement.executeQuery();
         return resultSet;
     }
     
+    //Ejecutar las conusltas
     public static int ejecutarSQL(String pSql) throws SQLException {
         int result;
         try (Connection connection = obtenerConexion();) { 
@@ -57,6 +67,7 @@ public class ComunDB {
         return result;
     }    
 
+    //
 class utilQuery{
     private String SQL;
     private PreparedStatement statement;
@@ -107,4 +118,5 @@ class utilQuery{
         this.numWhere++;
     }
 }
+    
 }
